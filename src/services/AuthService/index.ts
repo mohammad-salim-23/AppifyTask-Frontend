@@ -1,18 +1,22 @@
+"use server"
 import { jwtDecode } from "jwt-decode";
 import { cookies } from "next/headers";
 import { FieldValues } from "react-hook-form";
 
 export const registerUser = async(userData:FieldValues)=>{
 try{
+    console.log(process.env.NEXT_PUBLIC_BASIC_API);
+
   const res = await fetch(`${process.env.NEXT_PUBLIC_BASIC_API}/auth/register`,{
     method:"POST",
     headers:{
         "Content-Type":"application/json"
-    },
+    },  
     body:JSON.stringify(userData)
   })
 
   const result = await res.json();
+  console.log("Register user result:", result);
   if(result?.success){
     (await cookies()).set("accessToken",result?.data?.token)
   }
