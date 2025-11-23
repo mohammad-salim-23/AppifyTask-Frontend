@@ -7,7 +7,8 @@ import { LogOut, LogIn, Bell, User, ChevronDown, Menu, Search } from "lucide-rea
 import { getCurrentUser, logout } from "@/src/services/AuthService";
 import logo from "../../app/assets/images/logo.svg"
 import avatar from "../../app/assets/images/Avatar.png"
-import { GrNotification } from "react-icons/gr";
+import { IoHomeOutline } from "react-icons/io5";
+import { IoChatbubbleEllipsesOutline } from "react-icons/io5";
 const Navbar = () => {
   const router = useRouter();
   const [user, setUser] = useState<any>(null); 
@@ -61,13 +62,49 @@ const Navbar = () => {
           <div className="hidden md:flex items-center space-x-4">
             {user ? (
               <>
-                <button className="p-2 rounded-full text-gray-500 hover:bg-gray-100">
-                  <User className="h-6 w-6" />
-                </button>
-                <button className="p-2 rounded-full text-gray-500 hover:bg-gray-100 relative">
-                  <span className="absolute top-0 right-0 h-2 w-2 bg-blue-500 rounded-full border-2 border-white"></span>
-                  <Bell className="h-6 w-6" />
-                </button>
+             {/* HOME */}
+<button className="group p-2 rounded-full text-gray-500 hover:text-blue-600 relative cursor-pointer">
+  <IoHomeOutline className="h-6 w-6" />
+
+  {/* Circle Border on Hover */}
+  <span className="absolute inset-0 rounded-full border border-transparent group-hover:border-blue-500 transition-all"></span>
+
+  {/* Underline */}
+  <span className="absolute left-1/2 -bottom-1 w-0 h-0.5 bg-blue-500 group-hover:w-5 transform -translate-x-1/2 transition-all"></span>
+</button>
+
+{/* USER */}
+<button className="group p-2 rounded-full text-gray-500 hover:text-blue-600 relative cursor-pointer">
+  <User className="h-6 w-6" />
+
+  <span className="absolute inset-0 rounded-full border border-transparent group-hover:border-blue-500 transition-all"></span>
+
+  <span className="absolute left-1/2 -bottom-1 w-0 h-0.5 bg-blue-500 group-hover:w-5 transform -translate-x-1/2 transition-all"></span>
+</button>
+
+{/* BELL + Notification Dot */}
+<button className="group p-2 rounded-full text-gray-500 hover:text-blue-600 relative cursor-pointer">
+  {/* Notification Dot */}
+  <span className="absolute top-1 right-1 h-2 w-2 bg-blue-500 rounded-full border-2 border-white"></span>
+
+  <Bell className="h-6 w-6" />
+
+  <span className="absolute inset-0 rounded-full border border-transparent group-hover:border-blue-500 transition-all"></span>
+
+  <span className="absolute left-1/2 -bottom-1 w-0 h-0.5 bg-blue-500 group-hover:w-5 transform -translate-x-1/2 transition-all"></span>
+</button>
+
+{/* CHAT */}
+<button className="group p-2 rounded-full text-gray-500 hover:text-blue-600 relative cursor-pointer">
+  {/* Notification Dot */}
+  <span className="absolute top-1 right-1 h-2 w-2 bg-blue-500 rounded-full border-2 border-white"></span>
+
+  <IoChatbubbleEllipsesOutline className="h-6 w-6" />
+
+  <span className="absolute inset-0 rounded-full border border-transparent group-hover:border-blue-500 transition-all"></span>
+
+  <span className="absolute left-1/2 -bottom-1 w-0 h-0.5 bg-blue-500 group-hover:w-5 transform -translate-x-1/2 transition-all"></span>
+</button>
 
                 {/* Dropdown */}
                 <div className="ml-4 pl-4 border-l border-gray-200 relative">
