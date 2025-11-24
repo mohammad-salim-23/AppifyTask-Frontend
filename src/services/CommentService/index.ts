@@ -5,7 +5,7 @@ import { cookies } from "next/headers";
 export const addComment = async (data: any) => {
     const accessToken = (await cookies()).get("accessToken")?.value;
 
-    const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_API}/comments`, {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_API}/comment`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
@@ -20,7 +20,7 @@ export const addComment = async (data: any) => {
 export const getComments = async (postId: string) => {
     const accessToken = (await cookies()).get("accessToken")?.value;
 
-    const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_API}/comments/${postId}`, {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_API}/comment/${postId}`, {
         method: "GET",
         headers: {
             "authorization": accessToken!,
@@ -33,7 +33,7 @@ export const getComments = async (postId: string) => {
 export const updateComment = async (commentId: string, data: any) => {
     const accessToken = (await cookies()).get("accessToken")?.value;
 
-    const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_API}/comments/${commentId}`, {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_API}/comment/${commentId}`, {
         method: "PATCH",
         headers: {
             "Content-Type": "application/json",
@@ -48,7 +48,7 @@ export const updateComment = async (commentId: string, data: any) => {
 export const deleteComment = async (commentId: string) => {
     const accessToken = (await cookies()).get("accessToken")?.value;
 
-    const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_API}/comments/${commentId}`, {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_API}/comment/${commentId}`, {
         method: "DELETE",
         headers: {
             "authorization": accessToken!,

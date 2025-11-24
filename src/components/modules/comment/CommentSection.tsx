@@ -57,7 +57,7 @@ const CommentSection: React.FC<CommentSectionProps> = ({ postId, currentUserAvat
     }, [postId]);
 
 
-    // কমেন্ট সাবমিট করার ফাংশন
+   
     const handleCommentSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         if (!newCommentText.trim() || isPosting) return;
@@ -84,7 +84,7 @@ const CommentSection: React.FC<CommentSectionProps> = ({ postId, currentUserAvat
     };
 
 
-    // কমেন্ট কার্ড রেন্ডার করার হেল্পার
+
     const CommentCard: React.FC<{ comment: IComment }> = ({ comment }) => {
         const authorName = `${comment.author.firstName} ${comment.author.lastName}`;
         const timePosted = new Date(comment.createdAt).toLocaleDateString('en-US', {

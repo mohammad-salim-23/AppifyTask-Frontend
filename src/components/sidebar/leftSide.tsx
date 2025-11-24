@@ -5,10 +5,11 @@ import Image from 'next/image';
 import { Book, Bookmark, Compass, Settings, Users, Gamepad2, Zap, LayoutList, Calendar, LucideIcon } from 'lucide-react';
 
 
-const DUMMY_IMAGE_SRC = '/dummy-avatar.jpg'; 
-const DUMMY_EVENT_IMAGE = '/dummy-event-image.jpg'; 
+import img1 from "../../app/assets/images/people1.png"
+import img2 from "../../app/assets/images/people2.png"
+import img3 from "../../app/assets/images/people3.png"
 
-
+import eventImg from "../../app/assets/images/feed_event1.png"
 
 interface SingleSidebarItemProps {
   Icon: LucideIcon;
@@ -38,13 +39,13 @@ const SingleSidebarItem: React.FC<SingleSidebarItemProps> = ({ Icon, label, isNe
 };
 
 
-// ---------------------------------------------
-// 2. Main Sidebar Component (Static Data Included)
-// ---------------------------------------------
+
+//Main Sidebar Component (Static Data Included)
+
 
 const Sidebar: React.FC = () => {
   
-  // --- EXPLORE Section Data (Static) ---
+  //EXPLORE Section Data 
   const exploreItems = [
     { Icon: Compass, label: "Learning", isNew: true },
     { Icon: LayoutList, label: "Insights" },
@@ -56,21 +57,21 @@ const Sidebar: React.FC = () => {
     { Icon: Zap, label: "Save post" },
   ];
 
-  // --- SUGGESTED PEOPLE  ---
+
   const suggestedPeople = [
-    { name: "Steve Jobs", title: "CEO of Apple", imgSrc: DUMMY_IMAGE_SRC },
-    { name: "Ryan Roslansky", title: "CEO of LinkedIn", imgSrc: DUMMY_IMAGE_SRC },
-    { name: "Dylan Field", title: "CEO of Figma", imgSrc: DUMMY_IMAGE_SRC },
+    { name: "Steve Jobs", title: "CEO of Apple", imgSrc: img1},
+    { name: "Ryan Roslansky", title: "CEO of LinkedIn", imgSrc: img2 },
+    { name: "Dylan Field", title: "CEO of Figma", imgSrc: img3 },
   ];
 
-  // --- EVENTS Section---
+
   const events = [
-    { date: "10 Jul", title: "No more terrorism no more cry", attendees: 17, imgSrc: DUMMY_EVENT_IMAGE },
-    { date: "10 Jul", title: "No more terrorism no more cry", attendees: 17, imgSrc: DUMMY_EVENT_IMAGE },
+    { date: "10 Jul", title: "No more terrorism no more cry", attendees: 17, imgSrc: eventImg },
+    { date: "10 Jul", title: "No more terrorism no more cry", attendees: 17, imgSrc: eventImg },
   ];
 
   return (
-    // w-72 
+   
     <div className="w-72 flex-shrink-0 bg-white border-r border-gray-100 p-4 space-y-6">
       
       {/* EXPLORE Section */}
@@ -100,7 +101,7 @@ const Sidebar: React.FC = () => {
           {suggestedPeople.map((person, index) => (
             <div key={index} className="flex items-center justify-between p-2 hover:bg-gray-50 rounded-lg transition duration-150 cursor-pointer">
               <div className="flex items-center space-x-3">
-                {/* Demo Image/Avatar */}
+                {/* Demo Image*/}
                 <div className="relative h-10 w-10">
                     <Image 
                         src={person.imgSrc} 
@@ -145,7 +146,7 @@ const Sidebar: React.FC = () => {
               
               {/* Event Details */}
               <div className="flex items-start space-x-3">
-                {/* Date Tag */}
+               
                 <div className="flex flex-col items-center p-2 bg-[#20c997] rounded-lg text-white font-bold w-12 flex-shrink-0">
                   <Calendar className="h-4 w-4 mb-1 " />
                   <span className="text-xs leading-none font-bold">{event.date.split(' ')[0]}</span>

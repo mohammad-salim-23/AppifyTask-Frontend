@@ -8,7 +8,7 @@ import { uploadImageToCloudinary } from "@/src/services/Cloudinary";
 import { createPost } from "@/src/services/PostService";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
-
+import profileImg from "../../../app/assets/images/txt_img.png"
 const ActionIcon = ({ Icon, label }: { Icon: any; label: string }) => (
     <button
         type="button"
@@ -20,7 +20,7 @@ const ActionIcon = ({ Icon, label }: { Icon: any; label: string }) => (
 );
 
 interface CreatePostProps {
-    currentUser: any; // coming from wrapper
+    currentUser: any; 
 }
 
 const CreatePost: React.FC<CreatePostProps> = ({ currentUser }) => {
@@ -64,7 +64,7 @@ const CreatePost: React.FC<CreatePostProps> = ({ currentUser }) => {
                 image: finalImageUrl,
                 visibility
             });
-
+           console.log("post.....",result)
             if (!result?.success) throw new Error(result?.message);
 
             toast.success("Your post has been shared!");
@@ -86,7 +86,7 @@ const CreatePost: React.FC<CreatePostProps> = ({ currentUser }) => {
             <div className="flex space-x-4">
                 <div className="relative h-12 w-12">
                     <Image
-                        src="/avatar-placeholder.png"
+                        src={profileImg}
                         fill
                         className="rounded-full object-cover"
                         alt="avatar"

@@ -3,46 +3,52 @@
 import React from 'react';
 import Image from 'next/image';
 import { Plus, ArrowRight } from 'lucide-react';
+import img1 from "../../../app/assets/images/mobile_story_img.png"
+import img2 from "../../../app/assets/images/mobile_story_img1.png"
+import img3 from "../../../app/assets/images/mobile_story_img2.png"
+import storyImg1 from "../../../app/assets/images/card_ppl1.png"
+import storyImg2 from "../../../app/assets/images/card_ppl2.png"
+import storyImg3 from "../../../app/assets/images/card_ppl3.png"
+import storyImg4 from "../../../app/assets/images/card_ppl4.png"
 
-const DUMMY_AVATAR_SRC = '/dummy-avatar.jpg'; 
-const DUMMY_STORY_BG_SRC = '/dummy-story-bg.jpg'; 
+
 
 const staticStories = [
     { 
         type: 'create', 
         name: 'Your Story', 
-        bgSrc: null, 
-        avatarSrc: null 
+        bgSrc: storyImg1, 
+        avatarSrc: img1 
     },
     { 
         type: 'view', 
         name: 'Ryan Roslansky', 
-        bgSrc: '/story-bg-1.jpg', 
-        avatarSrc: DUMMY_AVATAR_SRC 
+        bgSrc: storyImg1, 
+        avatarSrc: img2
     },
     { 
         type: 'view', 
         name: 'Ryan Roslansky', 
-        bgSrc: '/story-bg-2.jpg', 
-        avatarSrc: DUMMY_AVATAR_SRC 
+        bgSrc: storyImg3, 
+        avatarSrc: img3
     },
     { 
         type: 'view', 
         name: 'Ryan Roslansky', 
-        bgSrc: '/story-bg-3.jpg', 
-        avatarSrc: DUMMY_AVATAR_SRC 
+        bgSrc: storyImg4, 
+        avatarSrc:img1
     },
     { 
         type: 'view', 
         name: 'Dylan Field', 
-        bgSrc: '/story-bg-4.jpg', 
-        avatarSrc: DUMMY_AVATAR_SRC 
+        bgSrc: storyImg1, 
+        avatarSrc: img2
     },
     { 
         type: 'view', 
         name: 'Steve Jobs', 
-        bgSrc: '/story-bg-5.jpg', 
-        avatarSrc: DUMMY_AVATAR_SRC 
+        bgSrc: storyImg2, 
+        avatarSrc: img3
     },
 ];
 
@@ -98,7 +104,7 @@ const Stories: React.FC = () => {
               <div className="absolute top-2 left-2">
                 <div className="relative h-8 w-8 rounded-full border-2 border-white">
                   <Image 
-                    src={story.avatarSrc || DUMMY_AVATAR_SRC}
+                    src={story.avatarSrc }
                     alt={`${story.name}'s avatar`}
                     layout="fill"
                     objectFit="cover"

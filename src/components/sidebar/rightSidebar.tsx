@@ -3,35 +3,35 @@
 import React from 'react';
 import Image from 'next/image';
 import { Search } from 'lucide-react'; 
+import img1 from "../../app/assets/images/people1.png"
+import img2 from "../../app/assets/images/people2.png"
+import img3 from "../../app/assets/images/people3.png"
 
-
-const DUMMY_AVATAR_SRC = '/dummy-avatar.jpg'; 
 
 const RightSidebar: React.FC = () => {
 
   const mightLikeProfile = {
     name: "Radovan SkillArena",
     title: "Founder & CEO at Trophy",
-    imgSrc: DUMMY_AVATAR_SRC,
+    imgSrc: img1,
   };
 
 
   const yourFriends = [
-    { name: "Steve Jobs", title: "CEO of Apple", timeAgo: "5 minute ago", imgSrc: DUMMY_AVATAR_SRC, online: false },
-    { name: "Ryan Roslansky", title: "CEO of LinkedIn", imgSrc: DUMMY_AVATAR_SRC, online: true },
-    { name: "Dylan Field", title: "CEO of Figma", imgSrc: DUMMY_AVATAR_SRC, online: true },
-    { name: "Steve Jobs", title: "CEO of Apple", timeAgo: "5 minute ago", imgSrc: DUMMY_AVATAR_SRC, online: false },
-    { name: "Ryan Roslansky", title: "CEO of LinkedIn", imgSrc: DUMMY_AVATAR_SRC, online: true },
-    { name: "Dylan Field", title: "CEO of Figma", imgSrc: DUMMY_AVATAR_SRC, online: true },
-    { name: "Dylan Field", title: "CEO of Figma", imgSrc: DUMMY_AVATAR_SRC, online: true },
-    { name: "Steve Jobs", title: "CEO of Apple", timeAgo: "5 minute ago", imgSrc: DUMMY_AVATAR_SRC, online: false },
+    { name: "Steve Jobs", title: "CEO of Apple", timeAgo: "5 minute ago", imgSrc: img2, online: false },
+    { name: "Ryan Roslansky", title: "CEO of LinkedIn", imgSrc: img3, online: true },
+    { name: "Dylan Field", title: "CEO of Figma", imgSrc: img1, online: true },
+    { name: "Steve Jobs", title: "CEO of Apple", timeAgo: "5 minute ago", imgSrc:img2 , online: false },
+    { name: "Ryan Roslansky", title: "CEO of LinkedIn", imgSrc: img3, online: true },
+    { name: "Dylan Field", title: "CEO of Figma", imgSrc: img1, online: true },
+    { name: "Dylan Field", title: "CEO of Figma", imgSrc: img2, online: true },
+    { name: "Steve Jobs", title: "CEO of Apple", timeAgo: "5 minute ago", imgSrc: img3, online: false },
   ];
 
   return (
 
     <div className="w-80 flex-shrink-0 bg-white border-l border-gray-100 p-4 space-y-6">
       
-      {/* OU MIGHT LIKE Section*/}
       <section className="bg-white p-4 rounded-xl shadow-sm border border-gray-100">
         <div className="flex justify-between items-center mb-4">
           <h3 className="text-lg font-bold text-gray-800">You Might Like</h3>
@@ -57,7 +57,7 @@ const RightSidebar: React.FC = () => {
             <button className="flex-1 px-4 py-2 text-sm font-medium text-gray-700 border border-gray-300 rounded-lg hover:bg-gray-50 transition duration-150 cursor-pointer">
               Ignore
             </button>
-            <button className="flex-1 px-4 py-2 text-sm font-medium text-white bg-blue-600 rounded-lg hover:bg-blue-700 transition duration-150 cursor-pointer">
+            <button className="flex-1 px-4 py-2 text-sm font-medium text-white bg-blue-400 rounded-lg hover:bg-blue-500 transition duration-150 cursor-pointer">
               Follow
             </button>
           </div>
@@ -96,7 +96,7 @@ const RightSidebar: React.FC = () => {
                 />
               </div>
               
-              {/* Name and Title Container */}
+           
               <div className="ml-3 flex-1">
                 <p className="text-sm font-semibold text-gray-800 flex items-center space-x-1">
                   <span>{friend.name}</span>

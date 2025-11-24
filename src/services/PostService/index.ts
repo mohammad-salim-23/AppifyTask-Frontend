@@ -23,7 +23,8 @@ export const getFeed = async () => {
     const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_API}/post/feed`, {
         method: "GET",
         headers: {
-            "authorization": accessToken!,   
+             "Content-Type": "application/json",
+            "authorization": `Bearer ${accessToken}`,   
         },
     });
 

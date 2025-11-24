@@ -2,13 +2,16 @@
 
 import { useRouter } from "next/navigation";
 import Stories from "../components/HomePage/story/story";
-import CreatePostWrapper from "../components/modules/post/createPostWrapper";
+
 import { ClipLoader } from "react-spinners";
 import Navbar from "../components/Navbar/Navbar";
 import Sidebar from "../components/sidebar/leftSide";
 import RightSidebar from "../components/sidebar/rightSidebar";
 import { useEffect, useState } from "react";
 import { getCurrentUser } from "../services/AuthService";
+import CreatePostWrapper from "../components/modules/post/createPostWrapper";
+import Feed from "../components/modules/feed/feed";
+
 
 export default function Home() {
   const router = useRouter();
@@ -28,7 +31,7 @@ export default function Home() {
   if (loading)
     return (
       <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
-        <ClipLoader color="#2563eb" size={60} /> {/* Blue spinner */}
+        <ClipLoader color="#2563eb" size={60} />
         <p className="mt-4 text-gray-700 text-lg font-medium">Loading your feed...</p>
       </div>
     );
@@ -48,6 +51,7 @@ export default function Home() {
         <div className="flex-1 px-2 sm:px-4 md:px-6">
           <Stories />
         <CreatePostWrapper/>
+        <Feed/>
         </div>
        
         {/* Right Sidebar */}
