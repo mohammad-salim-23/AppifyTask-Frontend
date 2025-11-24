@@ -39,47 +39,52 @@ const CreatePost: React.FC<CreatePostProps> = ({ currentUser }) => {
         if (file) setImageFile(file);
     };
 
-    const handleSubmit = async (e: React.FormEvent) => {
-        e.preventDefault();
-        setError(null);
-        setSuccess(null);
+   const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setError(null);
+    setSuccess(null);
 
-        if (!text && !imageFile) {
-            setError("Post cannot be empty.");
-            return;
+    if (!text && !imageFile) {
+        setError("Post cannot be empty.");
+        return;
+    }
+
+    setIsLoading(true);
+    let finalImageUrl: string | undefined;
+
+    try {
+        if (imageFile) {
+            const uploadResult = await uploadImageToCloudinary(imageFile);
+            if (!uploadResult?.success) throw new Error(uploadResult?.message);
+            finalImageUrl = uploadResult.url;
         }
 
-        setIsLoading(true);
-        let finalImageUrl: string | undefined;
+        const result = await createPost({
+            text,
+            image: finalImageUrl,
+            visibility
+        });
 
-        try {
-            if (imageFile) {
-                const uploadResult = await uploadImageToCloudinary(imageFile);
-                if (!uploadResult?.success) throw new Error(uploadResult?.message);
-                finalImageUrl = uploadResult.url;
-            }
+        if (!result?.success) throw new Error(result?.message);
 
-            const result = await createPost({
-                text,
-                image: finalImageUrl,
-                visibility
-            });
-           console.log("post.....",result)
-            if (!result?.success) throw new Error(result?.message);
+     
+        toast.success("Your post has been shared!");
 
-            toast.success("Your post has been shared!");
+        // Reset form
+        setText("");
+        setImageFile(null);
+        if (imageInputRef.current) imageInputRef.current.value = "";
 
-            setText("");
-            setImageFile(null);
-            if (imageInputRef.current) imageInputRef.current.value = "";
-            router.refresh();
-
-        } catch (err: any) {
-            setError(err.message);
-        } finally {
-            setIsLoading(false);
+          if(result.data){
+            window.dispatchEvent(new CustomEvent('new-post', { detail: result.data }));
         }
-    };
+
+    } catch (err: any) {
+        setError(err.message || "Something went wrong!");
+    } finally {
+        setIsLoading(false);
+    }
+};
 
     return (
         <form onSubmit={handleSubmit} className="bg-white p-6 rounded-xl shadow-lg border space-y-4">
