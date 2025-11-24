@@ -52,7 +52,7 @@ const Stories: React.FC = () => {
     const defaultBgSrc = '/dummy-story-bg-1.jpg';
 
   return (
-    <div className="relative w-full overflow-hidden py-4">
+    <div className="relative w-full overflow-hidden py-4 ml-4" >
       <div className="flex space-x-4 overflow-x-auto p-2 scrollbar-hide">
         
         {staticStories.map((story, index) => {
@@ -109,18 +109,20 @@ const Stories: React.FC = () => {
               <p className="absolute bottom-2 left-2 right-2 text-white font-semibold text-sm truncate">
                 {story.name}
               </p>
+              
             </div>
+            
           );
-        })}
-      </div>
-      
-      {/* Scroll Navigation Arrow (Right side) */}
-      <button 
+           <button 
         className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white w-10 h-10 rounded-full shadow-md flex items-center justify-center cursor-pointer border border-gray-200 hover:bg-gray-50 transition duration-150"
       
       >
-        <ArrowRight className="h-5 w-5 text-gray-700" />
+        <ArrowRight className="h-5 w-5 text-gray-700 text-blue-600" />
       </button>
+        })}
+      </div>
+   
+     
     </div>
   );
 };
