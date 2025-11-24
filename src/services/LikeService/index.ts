@@ -2,7 +2,21 @@
 
 import { cookies } from "next/headers";
 
-export const toggleLike = async (data: any) => {
+interface ILikeUser {
+  _id: string;
+  firstName: string;
+  lastName: string;
+  avatar?: string;
+}
+
+interface IApiResponse<T> {
+  success: boolean;
+  message: string;
+  data: T;
+}
+
+// Toggle Like
+export const toggleLike = async (data: { targetId: string; targetType: "Post" | "Comment" }): Promise<IApiResponse<{ liked: boolean }>> => {
     const accessToken = (await cookies()).get("accessToken")?.value;
 
     const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_API}/likes`, {
@@ -14,5 +28,22 @@ export const toggleLike = async (data: any) => {
         body: JSON.stringify(data),
     });
 
-    return res.json();
+    const json = await res.json();
+    return json;
+};
+
+// Get Likes for a Post
+export const getPostLikes = async (postId: string): Promise<IApiResponse<ILikeUser[]>> => {
+    const accessToken = (await cookies()).get("accessToken")?.value;
+
+    const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_API}/likes/post/${postId}`, {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json",
+            "authorization": accessToken!,
+        },
+    });
+
+    const json = await res.json();
+    return json;
 };

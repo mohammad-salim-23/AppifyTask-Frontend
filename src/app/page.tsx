@@ -48,7 +48,7 @@ export default function Home() {
         </div>
 
        
-        <div className="flex-1 px-2 sm:px-4 md:px-6">
+        <div className="flex-1 px-2 sm:px-4 md:px-6 overflow-x-hidden">
           <Stories />
         <CreatePostWrapper/>
         <Feed/>
