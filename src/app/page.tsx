@@ -3,14 +3,36 @@
 import { useRouter } from "next/navigation";
 import Stories from "../components/HomePage/story/story";
 import CreatePostWrapper from "../components/modules/post/createPostWrapper";
-
+import { ClipLoader } from "react-spinners";
 import Navbar from "../components/Navbar/Navbar";
 import Sidebar from "../components/sidebar/leftSide";
 import RightSidebar from "../components/sidebar/rightSidebar";
+import { useEffect, useState } from "react";
+import { getCurrentUser } from "../services/AuthService";
 
 export default function Home() {
   const router = useRouter();
-  
+  const [loading,setLoading] = useState(true)
+
+  useEffect(()=>{
+    const checkUser = async()=>{
+      const user = await getCurrentUser();
+      if(!user){
+        router.push("/login");
+      }else{
+        setLoading(false);
+      }
+    };
+    checkUser()
+  },[router])
+  if (loading)
+    return (
+      <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
+        <ClipLoader color="#2563eb" size={60} /> {/* Blue spinner */}
+        <p className="mt-4 text-gray-700 text-lg font-medium">Loading your feed...</p>
+      </div>
+    );
+
   return (
     <div>
       <Navbar />
