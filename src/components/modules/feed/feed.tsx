@@ -12,7 +12,7 @@ const Feed: React.FC = () => {
     const fetchFeed = async () => {
       try {
         const result = await getFeed();
-        console.log("...get",result)
+        // console.log("...get",result)
         if (result?.success) {
           setPosts(result.data || []);
         }

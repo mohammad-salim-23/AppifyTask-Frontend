@@ -29,7 +29,20 @@ export const getComments = async (postId: string) => {
 
     return res.json();
 };
+export const getReplies = async(commentId:string)=>{
+const accessToken = (await cookies()).get("accessToken")?.value;
+    const res = await fetch(
+        `${process.env.NEXT_PUBLIC_BASE_API}/comment/replies/${commentId}`,
+        {
+            method: "GET",
+            headers: {
+                "authorization": accessToken!,
+            },
+        }
+    );
 
+    return res.json();
+}
 export const updateComment = async (commentId: string, data: any) => {
     const accessToken = (await cookies()).get("accessToken")?.value;
 

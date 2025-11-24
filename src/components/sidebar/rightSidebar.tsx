@@ -1,12 +1,10 @@
 
-
 import React from 'react';
 import Image from 'next/image';
 import { Search } from 'lucide-react'; 
 import img1 from "../../app/assets/images/people1.png"
 import img2 from "../../app/assets/images/people2.png"
 import img3 from "../../app/assets/images/people3.png"
-
 
 const RightSidebar: React.FC = () => {
 
@@ -15,8 +13,6 @@ const RightSidebar: React.FC = () => {
     title: "Founder & CEO at Trophy",
     imgSrc: img1,
   };
-
-
   const yourFriends = [
     { name: "Steve Jobs", title: "CEO of Apple", timeAgo: "5 minute ago", imgSrc: img2, online: false },
     { name: "Ryan Roslansky", title: "CEO of LinkedIn", imgSrc: img3, online: true },

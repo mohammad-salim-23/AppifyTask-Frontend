@@ -35,7 +35,7 @@ const PostCard: React.FC<PostCardProps> = ({ post, dummyAvatarSrc }) => {
     const [likesCount, setLikesCount] = useState(post.likesCount);
     const [liked, setLiked] = useState(false);
 
-    console.log("fetch ..post", post);
+    // console.log("fetch ..post", post);
 
     const authorName = `${post.author.firstName} ${post.author.lastName}`;
     const authorAvatar = post.author.avatar || dummyAvatarSrc;

@@ -32,7 +32,7 @@ const Navbar = () => {
   useEffect(() => {
     handleLoadUser();
   }, []);
- console.log("user....",user)
+//  console.log("user....",user)
   const displayName = user?.firstName || user?.email?.split("@")[0] || "Guest";
   const displayInitials =
     user?.fir?.split(" ").map((n: string) => n[0]).join("").substring(0, 2) || (user ? "U" : "G");
