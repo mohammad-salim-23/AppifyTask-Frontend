@@ -85,7 +85,7 @@ const RegisterForm = ()=>{
                        >
                         {/* First Name Field */}
                         <div>
-                            <label className="text-sm font-medium text-gray-700">Full Name</label>
+                            <label className="text-sm font-medium text-gray-700">First Name</label>
                             <FormField
                             control={form.control}
                             name="firstName"
