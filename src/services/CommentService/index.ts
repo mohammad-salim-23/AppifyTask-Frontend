@@ -17,18 +17,23 @@ export const addComment = async (data: any) => {
     return res.json();
 };
 
-export const getComments = async (postId: string) => {
-    const accessToken = (await cookies()).get("accessToken")?.value;
+export const getComments = async (postId: string, lastSeen?: string) => {
+  const accessToken = (await cookies()).get("accessToken")?.value;
 
-    const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_API}/comment/${postId}`, {
-        method: "GET",
-        headers: {
-            "authorization": accessToken!,
-        },
-    });
+  const url = lastSeen
+    ? `${process.env.NEXT_PUBLIC_BASE_API}/comment/${postId}?lastSeen=${lastSeen}`
+    : `${process.env.NEXT_PUBLIC_BASE_API}/comment/${postId}`;
 
-    return res.json();
+  const res = await fetch(url, {
+    method: "GET",
+    headers: {
+      "authorization": accessToken!,
+    },
+  });
+
+  return res.json();
 };
+
 export const getReplies = async(commentId:string)=>{
 const accessToken = (await cookies()).get("accessToken")?.value;
     const res = await fetch(

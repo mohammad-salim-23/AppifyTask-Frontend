@@ -17,19 +17,24 @@ export const createPost = async (postData: any) => {
     return res.json();
 };
 
-export const getFeed = async () => {
-    const accessToken = (await cookies()).get("accessToken")?.value;
+export const getFeed = async (lastSeen?: string) => {
+  const accessToken = (await cookies()).get("accessToken")?.value;
 
-    const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_API}/post/feed`, {
-        method: "GET",
-        headers: {
-             "Content-Type": "application/json",
-            "authorization": `Bearer ${accessToken}`,   
-        },
-    });
+  const url = lastSeen 
+    ? `${process.env.NEXT_PUBLIC_BASE_API}/post/feed?lastSeen=${lastSeen}`
+    : `${process.env.NEXT_PUBLIC_BASE_API}/post/feed`;
 
-    return res.json();
+  const res = await fetch(url, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      "authorization": `Bearer ${accessToken}`,
+    },
+  });
+
+  return res.json();
 };
+
 export const getMyPosts = async () => {
     const accessToken = (await cookies()).get("accessToken")?.value;
 
