@@ -1,36 +1,58 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🌐 BuddyScript Frontend
 
-## Getting Started
+This repository contains the frontend application for our service, built using the Next.js framework. It utilizes a modern stack centered around Next.js, Tailwind CSS, and TypeScript, and is designed to support a real-time service application.
 
-First, run the development server:
+## 🛠️ Tech Stack
 
-```bash
+* **Framework:** Next.js (React)
+* **Language:** TypeScript
+* **Styling:** Tailwind CSS
+* **Form Handling:** `react-hook-form` (with `zod` for schema validation)
+* **API/Auth:** `js-cookie`, `jwt-decode`
+* **UI Icons:** `lucide-react`, `react-icons`
+* **Notifications:** `sonner`
+
+## 🚀 Local Setup
+
+Follow these steps to set up and run the project on your local machine.
+
+### Prerequisites
+
+You must have Node.js and npm (or yarn/pnpm) installed on your system.
+
+### 1. Clone the Repository
+
+
+git clone https://github.com/mohammad-salim-23/AppifyTask-Frontend
+cd service-frontend
+2. Install Dependencies
+Run the following command in the project's root directory:
+
+
+
+npm install
+# Or if using yarn: yarn install
+3. Configure Environment Variables
+Create a file named .env.local in the project root and add your necessary environment variables. An example based on your provided variables is below:
+
+# .env.local
+
+# API Configuration
+NEXT_PUBLIC_BASE_API=http://localhost:5000/api 
+
+# Cloudinary Configuration (Replace with actual values for image uploads)
+NEXT_PUBLIC_CLOUDINARY_UPLOAD_URL=[https://api.cloudinary.com/v1_1/](https://api.cloudinary.com/v1_1/)[cloud_name]/image/upload
+NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET=[your_upload_preset]
+
+4. Start the Local Development Server
+
+
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+Your application should now be running in development mode at http://localhost:3000.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+🏗️ Production Build
+To build your application for production:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+npm run build

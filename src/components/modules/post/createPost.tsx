@@ -106,14 +106,16 @@ const CreatePost: React.FC<CreatePostProps> = ({ currentUser }) => {
             </div>
 
             {imageFile && (
-                <div className="relative mt-4 p-2 border rounded-lg">
-                    <Image
+                <div className="relative mt-4 p-2 border rounded-lg w-full max-w-md mx-auto">
+                   <div className="relative w-full h-60 rounded-lg overflow-hidden">
+                     <Image
                         src={URL.createObjectURL(imageFile)}
                         alt="preview"
-                        width={200}
-                        height={200}
-                        className="rounded-lg"
+                        fill
+                        sizes="200px"
+                        className="rounded-lg object-cover"
                     />
+                   </div>
                     <button
                         type="button"
                         onClick={() => setImageFile(null)}

@@ -30,6 +30,19 @@ export const getFeed = async () => {
 
     return res.json();
 };
+export const getMyPosts = async () => {
+    const accessToken = (await cookies()).get("accessToken")?.value;
+
+    const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_API}/post/my-posts`, {
+        method: "GET",
+        headers: {
+             "Content-Type": "application/json",
+            "authorization": `Bearer ${accessToken}`,   
+        },
+    });
+
+    return res.json();
+};
 
 export const updatePost = async (id: string, data: any) => {
     const accessToken = (await cookies()).get("accessToken")?.value;

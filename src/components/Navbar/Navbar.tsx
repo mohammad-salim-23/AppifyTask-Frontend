@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import { LogOut, LogIn, Bell, User, ChevronDown, Menu, Search } from "lucide-react";
+import { LogOut, LogIn, Bell, User, ChevronDown, Menu, Search, FileText } from "lucide-react";
 import { getCurrentUser, logout } from "@/src/services/AuthService";
 import logo from "../../app/assets/images/logo.svg"
 import avatar from "../../app/assets/images/Avatar.png"
@@ -13,7 +13,7 @@ const Navbar = () => {
   const router = useRouter();
   const [user, setUser] = useState<any>(null); 
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false); 
 
   const handleRedirect = (path: string) => router.push(path);
 
@@ -32,8 +32,9 @@ const Navbar = () => {
   useEffect(() => {
     handleLoadUser();
   }, []);
-//  console.log("user....",user)
+ console.log("user....",user)
   const displayName = user?.firstName || user?.email?.split("@")[0] || "Guest";
+  // displayInitials is calculated but not used in the final JSX structure
   const displayInitials =
     user?.fir?.split(" ").map((n: string) => n[0]).join("").substring(0, 2) || (user ? "U" : "G");
 
@@ -66,10 +67,10 @@ const Navbar = () => {
 <button className="group p-2 rounded-full text-gray-500 hover:text-blue-600 relative cursor-pointer">
   <IoHomeOutline className="h-6 w-6" />
 
-  {/* Circle Border on Hover */}
+
   <span className="absolute inset-0 rounded-full border border-transparent group-hover:border-blue-500 transition-all"></span>
 
-  {/* Underline */}
+
   <span className="absolute left-1/2 -bottom-1 w-0 h-0.5 bg-blue-500 group-hover:w-5 transform -translate-x-1/2 transition-all"></span>
 </button>
 
@@ -84,7 +85,7 @@ const Navbar = () => {
 
 {/* BELL + Notification Dot */}
 <button className="group p-2 rounded-full text-gray-500 hover:text-blue-600 relative cursor-pointer">
-  {/* Notification Dot */}
+
   <span className="absolute top-1 right-1 h-2 w-2 bg-blue-500 rounded-full border-2 border-white"></span>
 
   <Bell className="h-6 w-6" />
@@ -96,7 +97,7 @@ const Navbar = () => {
 
 {/* CHAT */}
 <button className="group p-2 rounded-full text-gray-500 hover:text-blue-600 relative cursor-pointer">
-  {/* Notification Dot */}
+
   <span className="absolute top-1 right-1 h-2 w-2 bg-blue-500 rounded-full border-2 border-white"></span>
 
   <IoChatbubbleEllipsesOutline className="h-6 w-6" />
@@ -107,7 +108,7 @@ const Navbar = () => {
 </button>
 
                 {/* Dropdown */}
-                <div className="ml-4 pl-4 border-l border-gray-200 relative">
+              <div className="ml-4 pl-4 border-l border-gray-200 relative">
                   <button
                     onClick={() => setIsDropdownOpen(!isDropdownOpen)}
                     className="flex items-center space-x-2 cursor-pointer hover:bg-gray-50 p-2 rounded-lg"
@@ -134,6 +135,15 @@ const Navbar = () => {
                       <div className="px-4 py-2 text-sm text-gray-700 border-b">
                         Role: <strong>{user.role}</strong>
                       </div>
+                      
+                      <a 
+                        href="/my-posts" 
+                        className="flex items-center w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                      >
+                        <FileText className="mr-2 h-4 w-4 text-blue-500" /> My Posts
+                      </a>
+                    
+
                       <button
                         onClick={handleLogout}
                         className="flex items-center w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
@@ -188,9 +198,20 @@ const Navbar = () => {
             </div>
             {user ? (
               <>
+                {/* Profile Link */}
                 <a href="#" className="block px-3 py-2 text-base font-medium text-gray-700 rounded-md hover:bg-gray-50">
-                  Profile: {displayName}
+                  <User className="mr-2 h-5 w-5 text-gray-500 inline-block" /> Profile: {displayName}
                 </a>
+
+             
+                <a 
+                    href="/my-posts" 
+                    className="flex items-center w-full px-3 py-2 text-base font-medium text-blue-600 rounded-md hover:bg-blue-50"
+                >
+                    <FileText className="mr-2 h-5 w-5 text-blue-500" /> My Posts
+                </a>
+           
+
                 <button
                   onClick={handleLogout}
                   className="flex items-center w-full px-3 py-2 text-base font-medium text-red-600 rounded-md hover:bg-red-50"
