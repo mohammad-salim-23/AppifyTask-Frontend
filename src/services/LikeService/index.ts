@@ -7,8 +7,12 @@ interface ILikeUser {
   firstName: string;
   lastName: string;
   avatar?: string;
+  
 }
-
+interface IPostLikesResponse{
+    likedUsers: ILikeUser[];
+    userLiked: boolean;
+}
 interface IApiResponse<T> {
   success: boolean;
   message: string;
@@ -33,7 +37,7 @@ export const toggleLike = async (data: { targetId: string; targetType: "Post" | 
 };
 
 // Get Likes for a Post
-export const getPostLikes = async (postId: string): Promise<IApiResponse<ILikeUser[]>> => {
+export const getPostLikes = async (postId: string): Promise<IApiResponse<IPostLikesResponse>> => {
     const accessToken = (await cookies()).get("accessToken")?.value;
 
     const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_API}/likes/post/${postId}`, {

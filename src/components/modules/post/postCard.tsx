@@ -40,7 +40,7 @@ const PostCard: React.FC<PostCardProps> = ({ post, dummyAvatarSrc }) => {
   const [likesCount, setLikesCount] = useState(post.likesCount);
   const [liked, setLiked] = useState(false);
   const [likedUsers, setLikedUsers] = useState<any[]>([]);
-
+ const [showLikedUsers,setShowLikedUsers] = useState(false);
   const authorName = `${post.author.firstName} ${post.author.lastName}`;
   const authorAvatar = post.author.avatar || dummyAvatarSrc;
 
@@ -60,7 +60,8 @@ const PostCard: React.FC<PostCardProps> = ({ post, dummyAvatarSrc }) => {
         const res = await getPostLikes(post._id);
         console.log("liker name...",res)
         if (res.success) {
-          setLikedUsers(res.data);
+          setLikedUsers(res.data?.likedUsers);
+          setLiked(res.data.userLiked);
         }
       } catch (err) {
         console.error("Error fetching likes:", err);
@@ -82,7 +83,7 @@ const PostCard: React.FC<PostCardProps> = ({ post, dummyAvatarSrc }) => {
 
         // Reload liked users
         const updated = await getPostLikes(post._id);
-        if (updated.success) setLikedUsers(updated.data);
+        if (updated.success) setLikedUsers(updated.data.likedUsers);
       }
     } catch (err) {
       console.error("Error liking post:", err);
@@ -139,15 +140,28 @@ const PostCard: React.FC<PostCardProps> = ({ post, dummyAvatarSrc }) => {
 
       {/* Likes Users */}
       {likedUsers.length > 0 && (
-        <p className="text-sm text-gray-600 mb-2">
+        <p className="text-sm text-gray-600 mb-2 cursor-pointer hover:underline"
+        onClick={()=>setShowLikedUsers((prev)=>!prev)}
+        >
           ❤️ Liked by{" "}
           <span className="font-medium text-gray-800">
-            {likedUsers.slice(0, 3).map((u) => u.user?.firstName + " " + u.user?.lastName).join(", ")}
+           
+           {likedUsers.slice(0,3).map((u)=>
+         u.user?.firstName+" "+u.user?.lastName
+        ).join(", ")}
           </span>
           {likedUsers.length > 3 && ` and ${likedUsers.length - 3} others`}
         </p>
       )}
-
+    {showLikedUsers && (
+        <div className="bg-gray-100 p-3 rounded-lg mb-3">
+          {likedUsers.map((u)=>(
+            <p key={u._id} className="text-sm text-gray-700">
+                {u.user.firstName} {u.user.lastName}
+            </p>
+          ))}
+        </div>
+    )}
       {/* Counts */}
       <div className="flex justify-between items-center text-sm text-gray-500 border-b pb-3 mb-3">
         <p>
@@ -166,7 +180,7 @@ const PostCard: React.FC<PostCardProps> = ({ post, dummyAvatarSrc }) => {
       </div>
 
       {/* Buttons */}
-      <div className="flex justify-around">
+      <div className="flex justify-around cursor-pointer">
         <ActionButton
           Icon={Heart}
           count={likesCount}
